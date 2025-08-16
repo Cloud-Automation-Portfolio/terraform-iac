@@ -22,11 +22,11 @@ Includes advanced Infrastructure as Code techniques including multi-region resou
   - [7. State Secured Remotely]
   - [8. Infrastructure Destroyed]
   - [9. Cleanup]
-- [Screenshots](#screenshots)
 - [Advanced Terraform Features Bonus](#advanced-terraform-features-bonus)
   - [1. Multi-Region AWS S3 Buckets with Provider Aliases] 
   - [2. Reusable Terraform Registry Module (S3)]
   - [3. Policy-as-Code with OPA and Conftes]
+- [Screenshots](#screenshots)
 - [Lessons Learned](#lessons-learned)
 - [Notes and Limitations](#notes-and-limitations)
 - [References](#references)
@@ -117,6 +117,33 @@ In addition to the core multi-cloud workflow, I implemented a bonus Terraform mi
 
 ---
 
+## Advanced Features: Bonus Terraform IaC Mini-Lab
+
+This advanced section demonstrates practical IaC skills for production environments: multi-region AWS deployment, module reuse and Policy-as-Code validation.
+
+**1. Multi-Region AWS S3 Buckets with Provider Aliases**  
+   - Configured two AWS provider aliases for `us-east-1` and `us-west-1`.
+   - Provisioned identical S3 buckets in both regions for high availability and disaster recovery *(Screenshot: `providers-main-scripts.png`)*
+
+**2. Reusable Terraform Registry Module (S3)**  
+   - Used the official [terraform-aws-modules/s3-bucket](https://registry.terraform.io/modules/terraform-aws-modules/s3-bucket/aws/latest) for scalable S3 provisioning.
+   - Set minimal required variables (unique name, tags)
+   - Applied the plan and verified resource creation *(Screenshots: `registry-module-script.png` & `module-apply-output.png`)*
+
+**3. Policy-as-Code with OPA and Conftest**  
+   - Authored a Rego policy to deny unencrypted S3 buckets.
+   - Exported the Terraform plan to JSON.
+   - Evaluated compliance with `conftest`, simulating CI/CD pipeline security checks *(Screenshots: `opa-policy-script.png` & `conftest-fail-output.png`)*
+
+**S3 Security Best Practice:** Always block public access when creating S3 buckets via module:
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+  
+---
+
 ## Screenshots
 
 *All screenshots are included in the `screenshots/` folder.*
@@ -163,33 +190,6 @@ In addition to the core multi-cloud workflow, I implemented a bonus Terraform mi
 | Registry Module  | module-apply-output.png    | Module apply output in Terraform           |
 | OPA Policy       | opa-policy-script.png      | Example OPA/Rego policy for S3 encryption  |
 | OPA Test Output  | confest-fail-output.png    | Conftest output showing a policy violation |
-
----
-
-## Advanced Features: Bonus Terraform IaC Mini-Lab
-
-This advanced section demonstrates practical IaC skills for production environments: multi-region AWS deployment, module reuse and Policy-as-Code validation.
-
-**1. Multi-Region AWS S3 Buckets with Provider Aliases**  
-   - Configured two AWS provider aliases for `us-east-1` and `us-west-1`.
-   - Provisioned identical S3 buckets in both regions for high availability and disaster recovery *(Screenshot: `providers-main-scripts.png`)*
-
-**2. Reusable Terraform Registry Module (S3)**  
-   - Used the official [terraform-aws-modules/s3-bucket](https://registry.terraform.io/modules/terraform-aws-modules/s3-bucket/aws/latest) for scalable S3 provisioning.
-   - Set minimal required variables (unique name, tags)
-   - Applied the plan and verified resource creation *(Screenshots: `registry-module-script.png` & `module-apply-output.png`)*
-
-**3. Policy-as-Code with OPA and Conftest**  
-   - Authored a Rego policy to deny unencrypted S3 buckets.
-   - Exported the Terraform plan to JSON.
-   - Evaluated compliance with `conftest`, simulating CI/CD pipeline security checks *(Screenshots: `opa-policy-script.png` & `conftest-fail-output.png`)*
-
-**S3 Security Best Practice:**Always block public access when creating S3 buckets via module:
-
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
 
 ---
 
