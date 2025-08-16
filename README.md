@@ -23,9 +23,9 @@ Includes advanced Infrastructure as Code techniques including multi-region resou
   - [8. Infrastructure Destroyed]
   - [9. Cleanup]
 - [Advanced Terraform Features Bonus](#advanced-terraform-features-bonus)
-  - [1. Multi-Region AWS S3 Buckets with Provider Aliases] 
-  - [2. Reusable Terraform Registry Module (S3)]
-  - [3. Policy-as-Code with OPA and Conftes]
+  - [1.1 Multi-Region AWS S3 Buckets with Provider Aliases] 
+  - [1.2 Reusable Terraform Registry Module (S3)]
+  - [1.3 Policy-as-Code with OPA and Conftes]
 - [Screenshots](#screenshots)
 - [Lessons Learned](#lessons-learned)
 - [Notes and Limitations](#notes-and-limitations)
@@ -121,16 +121,16 @@ In addition to the core multi-cloud workflow, I implemented a bonus Terraform mi
 
 This advanced section demonstrates practical IaC skills for production environments: multi-region AWS deployment, module reuse and Policy-as-Code validation.
 
-**1. Multi-Region AWS S3 Buckets with Provider Aliases**  
+**1.1 Multi-Region AWS S3 Buckets with Provider Aliases**  
    - Configured two AWS provider aliases for `us-east-1` and `us-west-1`.
    - Provisioned identical S3 buckets in both regions for high availability and disaster recovery *(Screenshot: `providers-main-scripts.png`)*
 
-**2. Reusable Terraform Registry Module (S3)**  
+**1.2 Reusable Terraform Registry Module (S3)**  
    - Used the official [terraform-aws-modules/s3-bucket](https://registry.terraform.io/modules/terraform-aws-modules/s3-bucket/aws/latest) for scalable S3 provisioning.
    - Set minimal required variables (unique name, tags)
    - Applied the plan and verified resource creation *(Screenshots: `registry-module-script.png` & `module-apply-output.png`)*
 
-**3. Policy-as-Code with OPA and Conftest**  
+**1.3 Policy-as-Code with OPA and Conftest**  
    - Authored a Rego policy to deny unencrypted S3 buckets.
    - Exported the Terraform plan to JSON.
    - Evaluated compliance with `conftest`, simulating CI/CD pipeline security checks *(Screenshots: `opa-policy-script.png` & `conftest-fail-output.png`)*
