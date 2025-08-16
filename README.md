@@ -117,7 +117,7 @@ In addition to the core multi-cloud workflow, I implemented a bonus Terraform mi
 
 ---
 
-## Advanced Features: Bonus Terraform IaC Mini-Lab
+## Advanced Terraform Features Bonus
 
 This advanced section demonstrates practical IaC skills for production environments: multi-region AWS deployment, module reuse and Policy-as-Code validation.
 
