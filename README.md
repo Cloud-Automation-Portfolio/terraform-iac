@@ -183,13 +183,13 @@ This advanced section demonstrates practical IaC skills for production environme
 
 - **Bonus Screenshots Table**
 
-| Step             | Screenshot Filename        | Description                                |
-| ---------------- | -------------------------- | ------------------------------------------ |
-| Provider Aliases | providers-main-scripts.png | AWS provider aliases & S3 code             |
-| Registry Module  | registry-module-script.png | Registry S3 module code                    |
-| Registry Module  | module-apply-output.png    | Module apply output in Terraform           |
-| OPA Policy       | opa-policy-script.png      | Example OPA/Rego policy for S3 encryption  |
-| OPA Test Output  | confest-fail-output.png    | Conftest output showing a policy violation |
+| Step                   | Screenshot Filename        | Description                                |
+| ---------------------- | -------------------------- | ------------------------------------------ |
+| 1.1 - Provider Aliases | providers-main-scripts.png | AWS provider aliases & S3 code             |
+| 1.2 - Registry Module  | registry-module-script.png | Registry S3 module code                    |
+| 1.2 - Registry Module  | module-apply-output.png    | Module apply output in Terraform           |
+| 1.3 - OPA Policy       | opa-policy-script.png      | Example OPA/Rego policy for S3 encryption  |
+| 1.3 - OPA Test Output  | confest-fail-output.png    | Conftest output showing a policy violation |
 
 ---
 
